@@ -1,0 +1,24 @@
+{
+  "originHash" : "23f73c9f561d9127476de5cc8df0c73d34f75277e94727c703da279c9c599d87",
+  "pins" : [
+    {
+      "identity" : "maplibre-gl-native-distribution",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/maplibre/maplibre-gl-native-distribution",
+      "state" : {
+        "revision" : "84a79bc375a301169390ac110c868f06c857b83f",
+        "version" : "6.27.0"
+      }
+    },
+    {
+      "identity" : "swiftaa",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onekiloparsec/SwiftAA",
+      "state" : {
+        "revision" : "050867bd8e9411100d3073047ce95942e2b0aa0d",
+        "version" : "3.0.1"
+      }
+    }
+  ],
+  "version" : 3
+}
