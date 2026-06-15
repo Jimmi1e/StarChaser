@@ -1,8 +1,9 @@
 # StarChaser - 您的私人星空观测指南 🌌
 
 <p align="center">
-  <img src="YOUR_ICON_IMAGE_URL" width="200" alt="StarChaser Icon">
+  <img src=src="https://github.com/user-attachments/assets/9f4ca86d-ce6d-40cb-80a2-cd0b1ffd06cd" width="200" alt="StarChaser Icon">
 </p>
+
 
 <p align="center">
   <b>探索暗夜，追随银河。StarChaser 是一款专为星空摄影师和天文爱好者打造的专业级 iOS 应用。</b>
@@ -40,12 +41,12 @@
 ## 📸 功能预览
 
 <div align="center">
-<img width="1179" height="2556" alt="05bfe41bb3654c6f4c1f9d2bbe77cc06" src="https://github.com/user-attachments/assets/26fcb273-a80a-45d4-87d5-cd4bd71ce257" />
-<img width="1179" height="2556" alt="968f6444acac1e61d1ecf3347ee7a9b3" src="https://github.com/user-attachments/assets/46cab1c9-1b88-439e-8ab3-ed1aa5d9b20e" />
-<img width="1179" height="2556" alt="8706ca76d902f08192320b62d2676f43" src="https://github.com/user-attachments/assets/758eee26-37cb-40d2-bad7-93d94bb0145b" />
-<img width="1179" height="2556" alt="4d8362161b1f47cb27656f3d169bb433" src="https://github.com/user-attachments/assets/6dd366e0-f0b5-401c-8f6f-b5506f39f430" />
-<img width="1179" height="2556" alt="6248578712ced7ea627d6bc2843647bf" src="https://github.com/user-attachments/assets/e4e591d2-6c07-4de4-a701-64c61de90105" />
-<img width="1179" height="2556" alt="258f6836f2131b6f8c2516c5190d4282" src="https://github.com/user-attachments/assets/0e0ad691-22da-48d5-8ca1-baec9c07bc90" />
+<img width="300" alt="05bfe41bb3654c6f4c1f9d2bbe77cc06" src="https://github.com/user-attachments/assets/26fcb273-a80a-45d4-87d5-cd4bd71ce257" />
+<img width="300" alt="968f6444acac1e61d1ecf3347ee7a9b3" src="https://github.com/user-attachments/assets/46cab1c9-1b88-439e-8ab3-ed1aa5d9b20e" />
+<img width="300" alt="8706ca76d902f08192320b62d2676f43" src="https://github.com/user-attachments/assets/758eee26-37cb-40d2-bad7-93d94bb0145b" />
+<img width="300" alt="4d8362161b1f47cb27656f3d169bb433" src="https://github.com/user-attachments/assets/6dd366e0-f0b5-401c-8f6f-b5506f39f430" />
+<img width="300" alt="6248578712ced7ea627d6bc2843647bf" src="https://github.com/user-attachments/assets/e4e591d2-6c07-4de4-a701-64c61de90105" />
+<img width="300" alt="258f6836f2131b6f8c2516c5190d4282" src="https://github.com/user-attachments/assets/0e0ad691-22da-48d5-8ca1-baec9c07bc90" />
 
 </div>
 
