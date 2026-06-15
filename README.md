@@ -1,7 +1,7 @@
 # StarChaser - 您的私人星空观测指南 🌌
 
 <p align="center">
-  <img src=src="https://github.com/user-attachments/assets/9f4ca86d-ce6d-40cb-80a2-cd0b1ffd06cd" width="200" alt="StarChaser Icon">
+  <img src="https://github.com/user-attachments/assets/9f4ca86d-ce6d-40cb-80a2-cd0b1ffd06cd" width="200" alt="StarChaser Icon">
 </p>
 
 
