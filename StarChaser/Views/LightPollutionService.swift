@@ -34,58 +34,58 @@ enum BortleClass: Int, CaseIterable, Sendable {
         }
     }
 
-    var title: String { "Bortle \(rawValue) 级 · \(description)" }
+    var title: String { TF("Bortle %d 级 · %@", "Bortle %d · %@", rawValue, description) }
 
     var description: String {
         switch self {
-        case .class1: return "极佳暗空"
-        case .class2: return "典型暗空"
-        case .class3: return "乡村星空"
-        case .class4: return "乡村/郊区过渡"
-        case .class5: return "郊区星空"
-        case .class6: return "明亮郊区"
-        case .class7: return "城市边缘"
-        case .class8: return "城市星空"
-        case .class9: return "市中心"
+        case .class1: return T("极佳暗空", "Excellent Dark Sky")
+        case .class2: return T("典型暗空", "Typical Dark Sky")
+        case .class3: return T("乡村星空", "Rural Sky")
+        case .class4: return T("乡村/郊区过渡", "Rural/Suburban Transition")
+        case .class5: return T("郊区星空", "Suburban Sky")
+        case .class6: return T("明亮郊区", "Bright Suburban Sky")
+        case .class7: return T("城市边缘", "Urban Edge")
+        case .class8: return T("城市星空", "Urban Sky")
+        case .class9: return T("市中心", "City Center")
         }
     }
 
     var approximateSQM: String {
         switch self {
-        case .class1: return "约 21.9–22.0"
-        case .class2: return "约 21.7–21.9"
-        case .class3: return "约 21.3–21.7"
-        case .class4: return "约 20.4–21.3"
-        case .class5: return "约 19.5–20.4"
-        case .class6: return "约 18.9–19.5"
-        case .class7: return "约 18.3–18.9"
-        case .class8: return "约 17.5–18.3"
-        case .class9: return "低于 17.5"
+        case .class1: return T("约 21.9–22.0", "about 21.9–22.0")
+        case .class2: return T("约 21.7–21.9", "about 21.7–21.9")
+        case .class3: return T("约 21.3–21.7", "about 21.3–21.7")
+        case .class4: return T("约 20.4–21.3", "about 20.4–21.3")
+        case .class5: return T("约 19.5–20.4", "about 19.5–20.4")
+        case .class6: return T("约 18.9–19.5", "about 18.9–19.5")
+        case .class7: return T("约 18.3–18.9", "about 18.3–18.9")
+        case .class8: return T("约 17.5–18.3", "about 17.5–18.3")
+        case .class9: return T("低于 17.5", "below 17.5")
         }
     }
 
     var astrophotographyAdvice: String {
         switch self {
         case .class1, .class2:
-            return "理想环境。适合银河、星野与深空目标，可延长单张曝光并减少堆栈张数。"
+            return T("理想环境。适合银河、星野与深空目标，可延长单张曝光并减少堆栈张数。", "Ideal sky. Good for the Milky Way, wide-field stars, and deep-sky targets. Longer single exposures and fewer stacks are viable.")
         case .class3, .class4:
-            return "良好环境。银河主体清晰，注意避开地平线方向的城市光穹。"
+            return T("良好环境。银河主体清晰，注意避开地平线方向的城市光穹。", "Good sky. The Milky Way core should be clear, but avoid urban skyglow near the horizon.")
         case .class5, .class6:
-            return "光害明显。建议缩短单张曝光、增加堆栈，并在后期做渐变与色偏校正。"
+            return T("光害明显。建议缩短单张曝光、增加堆栈，并在后期做渐变与色偏校正。", "Light pollution is obvious. Use shorter subs, more stacking, and correct gradients and color cast in post.")
         case .class7, .class8, .class9:
-            return "背景天光很亮。优先拍摄月亮、行星或亮星团；深空摄影建议使用窄带滤镜。"
+            return T("背景天光很亮。优先拍摄月亮、行星或亮星团；深空摄影建议使用窄带滤镜。", "The sky background is very bright. Favor the Moon, planets, or bright clusters; narrowband filters are recommended for deep-sky work.")
         }
     }
 
     var milkyWayVisibility: String {
         switch self {
-        case .class1: return "非常清晰，可见复杂暗星云结构。"
-        case .class2: return "清晰，夏季银河核心层次丰富。"
-        case .class3: return "清晰，但近地平线细节开始减弱。"
-        case .class4: return "天顶可见，内部结构较少。"
-        case .class5: return "仅在通透无月夜的天顶方向隐约可见。"
-        case .class6: return "很难辨认，需要优秀天气与暗适应。"
-        case .class7, .class8, .class9: return "通常无法用肉眼辨认。"
+        case .class1: return T("非常清晰，可见复杂暗星云结构。", "Very clear, with complex dark nebula structure visible.")
+        case .class2: return T("清晰，夏季银河核心层次丰富。", "Clear, with rich structure in the summer Milky Way core.")
+        case .class3: return T("清晰，但近地平线细节开始减弱。", "Clear, but details near the horizon begin to fade.")
+        case .class4: return T("天顶可见，内部结构较少。", "Visible near the zenith, with limited internal structure.")
+        case .class5: return T("仅在通透无月夜的天顶方向隐约可见。", "Barely visible near the zenith on transparent moonless nights.")
+        case .class6: return T("很难辨认，需要优秀天气与暗适应。", "Hard to identify; excellent transparency and dark adaptation are needed.")
+        case .class7, .class8, .class9: return T("通常无法用肉眼辨认。", "Usually not visible to the naked eye.")
         }
     }
 }
@@ -97,8 +97,8 @@ struct LightPollutionReading: Sendable {
 
         var title: String {
             switch self {
-            case .satellite2025: return "2025 天空亮度图"
-            case .offlineEstimate: return "离线城市距离估算"
+            case .satellite2025: return T("2025 天空亮度图", "2025 Sky Brightness Map")
+            case .offlineEstimate: return T("离线城市距离估算", "Offline City-Distance Estimate")
             }
         }
     }

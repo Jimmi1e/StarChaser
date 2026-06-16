@@ -17,7 +17,7 @@ struct RealisticMoonView: View {
     var body: some View {
         GeometryReader { geo in
             let size = min(geo.size.width, geo.size.height)
-            let isNewMoon = phaseName == "新月"
+            let isNewMoon = phaseProgress < 0.03 || phaseProgress > 0.97
             
             ZStack {
                 // 1. 暗部底座（永远是不发光的深灰色）
@@ -163,19 +163,19 @@ struct MoonWidgetView: View {
                 
                 VStack(alignment: .leading, spacing: 6) {
                     HStack {
-                        Text("照射范围").foregroundColor(.secondary)
+                        Text(T("照射范围", "Illumination")).foregroundColor(.secondary)
                         Spacer()
                         Text("\(Int(data.illumination * 100))%").foregroundColor(.primary)
                     }
                     HStack {
-                        Text("下次月出").foregroundColor(.secondary)
+                        Text(T("下次月出", "Next Moonrise")).foregroundColor(.secondary)
                         Spacer()
                         Text(formatTime(data.moonrise)).foregroundColor(.primary)
                     }
                     HStack {
-                        Text("下次满月").foregroundColor(.secondary)
+                        Text(T("下次满月", "Next Full Moon")).foregroundColor(.secondary)
                         Spacer()
-                        Text("\(data.daysToFullMoon) 天").foregroundColor(.primary)
+                        Text(TF("%d 天", "%d days", data.daysToFullMoon)).foregroundColor(.primary)
                     }
                 }
                 .font(.system(size: 15))
@@ -245,9 +245,9 @@ struct MoonDetailView: View {
 
                     VStack(spacing: 15) {
                         HStack {
-                            Text("时间推演轴").font(.caption).foregroundColor(.secondary)
+                            Text(T("时间推演轴", "Time Scrubber")).font(.caption).foregroundColor(.secondary)
                             Spacer()
-                            Text(timeOffset == 0 ? "现在" : "\(String(format: "%.1f", timeOffset)) 小时后")
+                            Text(timeOffset == 0 ? T("现在", "Now") : TF("%.1f 小时后", "%.1f h later", timeOffset))
                                 .font(.caption)
                                 .foregroundColor(.yellow)
                         }
@@ -265,21 +265,21 @@ struct MoonDetailView: View {
                     .cornerRadius(15)
 
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 15) {
-                        DetailInfoTile(title: "照射范围", value: "\(Int(currentData.illumination * 100))%")
-                        DetailInfoTile(title: "地月距离", value: "\(Int(currentData.distance)) 公里")
-                        DetailInfoTile(title: "月出时刻", value: formatTime(currentData.moonrise))
-                        DetailInfoTile(title: "月落时刻", value: formatTime(currentData.moonset))
+                        DetailInfoTile(title: T("照射范围", "Illumination"), value: "\(Int(currentData.illumination * 100))%")
+                        DetailInfoTile(title: T("地月距离", "Distance"), value: TF("%d 公里", "%d km", Int(currentData.distance)))
+                        DetailInfoTile(title: T("月出时刻", "Moonrise"), value: formatTime(currentData.moonrise))
+                        DetailInfoTile(title: T("月落时刻", "Moonset"), value: formatTime(currentData.moonset))
                     }
                     .padding(.horizontal)
 
                     VStack(alignment: .leading, spacing: 15) {
-                        Text("未来 14 天真实月相预报").font(.headline).foregroundColor(.primary)
+                        Text(T("未来 14 天真实月相预报", "14-Day Moon Phase Forecast")).font(.headline).foregroundColor(.primary)
                         let columns = Array(repeating: GridItem(.flexible()), count: 7)
                         
                         LazyVGrid(columns: columns, spacing: 15) {
                             ForEach(currentData.forecast, id: \.self) { dailyPhase in
                                 VStack(spacing: 8) {
-                                    Text("+\(dailyPhase.dayOffset)天")
+                                    Text(TF("+%d天", "+%dd", dailyPhase.dayOffset))
                                         .font(.caption2)
                                         .foregroundColor(.secondary)
                                     RealisticMoonView(phaseProgress: dailyPhase.phaseProgress, phaseName: dailyPhase.phaseName)
@@ -311,7 +311,8 @@ struct MoonDetailView: View {
     
     private func formatFullDate(_ date: Date) -> String {
         let f = DateFormatter()
-        f.dateFormat = "M月d日 EEEE HH:mm"
+        f.locale = LanguagePreference.current.locale
+        f.dateFormat = LanguagePreference.current.prefersChinese ? "M月d日 EEEE HH:mm" : "MMM d, EEEE HH:mm"
         return f.string(from: date)
     }
     

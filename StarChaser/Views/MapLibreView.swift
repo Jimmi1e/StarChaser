@@ -24,7 +24,7 @@ struct MapLibreView: UIViewRepresentable {
     @Binding var viewportRequest: MapViewportRequest?
     
     @AppStorage("themePreference") private var themePref: ThemePreference = .system
-    @AppStorage("languagePreference") private var langPref: LanguagePreference = .zh
+    @AppStorage("languagePreference") private var langPref: LanguagePreference = .system
     @Environment(\.colorScheme) var systemScheme
     
     func makeCoordinator() -> Coordinator { Coordinator(self) }
@@ -79,7 +79,7 @@ struct MapLibreView: UIViewRepresentable {
             }
             let annotation = MLNPointAnnotation()
             annotation.coordinate = coord
-            annotation.title = "光污染采样点"
+            annotation.title = T("光污染采样点", "Light Pollution Sample")
             mapView.addAnnotation(annotation)
             selectedAnnotation = annotation
 

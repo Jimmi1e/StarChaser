@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OnboardingView: View {
     @AppStorage("themePreference") private var themePref: ThemePreference = .system
-    @AppStorage("languagePreference") private var langPref: LanguagePreference = .zh
+    @AppStorage("languagePreference") private var langPref: LanguagePreference = .system
     @Binding var isFirstLaunch: Bool
     
     @State private var contentIsVisible = false
@@ -40,23 +40,31 @@ struct OnboardingView: View {
                     .shadow(color: .yellow.opacity(0.5), radius: 20)
                     .scaleEffect(contentIsVisible ? 1.0 : 0.8)
                 
-                Text("星空追随者")
+                Text(T("星空追随者", "Star Chaser"))
                     .font(.system(size: 36, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
                 
                 // 🌟 苹果高级质感毛玻璃面板
                 VStack(alignment: .leading, spacing: 25) {
                     VStack(alignment: .leading, spacing: 10) {
-                        Text("偏好语言").font(.subheadline).foregroundColor(.white.opacity(0.8))
-                        Picker("语言", selection: $langPref) {
-                            ForEach(LanguagePreference.allCases, id: \.self) { Text($0.rawValue).tag($0) }
+                        Text(T("偏好语言", "Language"))
+                            .font(.subheadline)
+                            .foregroundColor(.white.opacity(0.8))
+                        Picker(T("语言", "Language"), selection: $langPref) {
+                            ForEach(LanguagePreference.allCases, id: \.self) {
+                                Text($0.displayTitle).tag($0)
+                            }
                         }.pickerStyle(.segmented)
                     }
                     
                     VStack(alignment: .leading, spacing: 10) {
-                        Text("界面外观").font(.subheadline).foregroundColor(.white.opacity(0.8))
-                        Picker("主题", selection: $themePref) {
-                            ForEach(ThemePreference.allCases, id: \.self) { Text($0.rawValue).tag($0) }
+                        Text(T("界面外观", "Appearance"))
+                            .font(.subheadline)
+                            .foregroundColor(.white.opacity(0.8))
+                        Picker(T("主题", "Theme"), selection: $themePref) {
+                            ForEach(ThemePreference.allCases, id: \.self) {
+                                Text($0.displayTitle).tag($0)
+                            }
                         }.pickerStyle(.segmented)
                     }
                 }
@@ -74,7 +82,7 @@ struct OnboardingView: View {
                         isFirstLaunch = false
                     }
                 }) {
-                    Text("开启追星之旅")
+                    Text(T("开启追星之旅", "Start Chasing Stars"))
                         .font(.headline)
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)

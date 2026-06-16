@@ -16,7 +16,7 @@ struct LightPollutionSideControl: View {
     
     var body: some View {
         VStack(spacing: 12) {
-            Text("图层")
+            Text(T("图层", "Layers"))
                 .font(.system(size: 11, weight: .bold))
                 .foregroundColor(.primary.opacity(0.7))
                 .padding(.top, 8)
@@ -33,7 +33,7 @@ struct LightPollutionSideControl: View {
                         .font(.system(size: 22))
                         .foregroundColor(isLayerActive ? .yellow : .primary.opacity(0.8))
                     
-                    Text("光害")
+                    Text(T("光害", "Light"))
                         .font(.system(size: 10, weight: .medium))
                         .foregroundColor(isLayerActive ? .yellow : .primary.opacity(0.8))
 
@@ -58,9 +58,9 @@ struct LightPollutionScaleBar: View {
     var body: some View {
         VStack(spacing: 7) {
             HStack {
-                Text("暗空")
+                Text(T("暗空", "Dark"))
                 Spacer()
-                Text("光污染严重")
+                Text(T("光污染严重", "Bright"))
             }
             .font(.caption2.weight(.semibold))
             .foregroundStyle(.secondary)
@@ -74,13 +74,13 @@ struct LightPollutionScaleBar: View {
             .clipShape(Capsule())
 
             HStack {
-                Text("绿 / 青")
+                Text(T("绿 / 青", "Green / Cyan"))
                 Spacer()
-                Text("黄")
+                Text(T("黄", "Yellow"))
                 Spacer()
-                Text("橙 / 红")
+                Text(T("橙 / 红", "Orange / Red"))
                 Spacer()
-                Text("紫")
+                Text(T("紫", "Purple"))
             }
             .font(.system(size: 9, weight: .medium))
             .foregroundStyle(.secondary)
@@ -108,7 +108,7 @@ struct LightPollutionLegendCard: View {
                 VStack(spacing: 15) {
                     ProgressView()
                         .scaleEffect(1.5)
-                    Text("正在读取 2025 天空亮度...")
+                    Text(T("正在读取 2025 天空亮度...", "Reading 2025 sky brightness..."))
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
@@ -153,9 +153,9 @@ struct LightPollutionLegendCard: View {
                         }
                     }
                     HStack {
-                        Text("极佳暗空")
+                        Text(T("极佳暗空", "Excellent dark sky"))
                         Spacer()
-                        Text("污染最严重")
+                        Text(T("污染最严重", "Most polluted"))
                     }
                     .font(.caption2)
                     .foregroundStyle(.secondary)
@@ -174,16 +174,16 @@ struct LightPollutionLegendCard: View {
                 .foregroundStyle(reading.source == .satellite2025 ? Color.secondary : Color.orange)
 
                 VStack(spacing: 14) {
-                    ObservationAdviceRow(icon: "camera.aperture", title: "星空摄影评价", text: data.astrophotographyAdvice)
+                    ObservationAdviceRow(icon: "camera.aperture", title: T("星空摄影评价", "Astrophotography"), text: data.astrophotographyAdvice)
                     Divider()
-                    ObservationAdviceRow(icon: "eye", title: "肉眼银河观测", text: data.milkyWayVisibility)
+                    ObservationAdviceRow(icon: "eye", title: T("肉眼银河观测", "Milky Way Visibility"), text: data.milkyWayVisibility)
                 }
                 .padding(15)
                 .background(Color(UIColor.secondarySystemBackground))
                 .cornerRadius(16)
                 
                 if let coord = coordinate {
-                    Text("采样坐标 \(String(format: "%.4f", coord.latitude)), \(String(format: "%.4f", coord.longitude))")
+                    Text(TF("采样坐标 %.4f, %.4f", "Sample %.4f, %.4f", coord.latitude, coord.longitude))
                         .font(.system(size: 11, design: .monospaced))
                         .foregroundColor(.secondary)
                 }

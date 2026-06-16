@@ -29,7 +29,7 @@ struct MainDashboardView: View {
                 LazyVStack(spacing: 18) {
                     HStack {
                         VStack(alignment: .leading, spacing: 5) {
-                            Text("星空追随者")
+                            Text(T("星空追随者", "Star Chaser"))
                                 .font(.system(size: 28, weight: .bold, design: .rounded))
                             if let loc = locationManager.location {
                                 Label(
@@ -39,7 +39,7 @@ struct MainDashboardView: View {
                                 .font(.system(size: 13, design: .monospaced))
                                 .foregroundColor(.secondary)
                             } else {
-                                Label("正在获取位置", systemImage: "location")
+                                Label(T("正在获取位置", "Getting location"), systemImage: "location")
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
                             }
@@ -74,7 +74,7 @@ struct MainDashboardView: View {
                                         isShowingFullScreenMap = true
                                     }
 
-                                Label("查看全国光污染地图", systemImage: "map.fill")
+                                Label(T("查看全国光污染地图", "Open Light Pollution Map"), systemImage: "map.fill")
                                     .font(.caption.weight(.semibold))
                                     .foregroundStyle(.white)
                                     .padding(.horizontal, 12)
@@ -92,7 +92,7 @@ struct MainDashboardView: View {
                             .overlay {
                                 VStack(spacing: 10) {
                                     ProgressView()
-                                    Text("正在准备观测地图")
+                                    Text(T("正在准备观测地图", "Preparing observing map"))
                                         .font(.caption)
                                         .foregroundStyle(.secondary)
                                 }
@@ -143,23 +143,31 @@ struct MainDashboardView: View {
 struct QuickSettingsView: View {
     @Environment(\.dismiss) var dismiss
     @AppStorage("themePreference") private var themePref: ThemePreference = .system
-    @AppStorage("languagePreference") private var langPref: LanguagePreference = .zh
+    @AppStorage("languagePreference") private var langPref: LanguagePreference = .system
     @AppStorage("showLightPollution") private var showLP: Bool = true
     
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("偏好设置")) {
-                    Picker("语言", selection: $langPref) { ForEach(LanguagePreference.allCases, id: \.self) { Text($0.rawValue).tag($0) } }
-                    Picker("主题", selection: $themePref) { ForEach(ThemePreference.allCases, id: \.self) { Text($0.rawValue).tag($0) } }
+                Section(header: Text(T("偏好设置", "Preferences"))) {
+                    Picker(T("语言", "Language"), selection: $langPref) {
+                        ForEach(LanguagePreference.allCases, id: \.self) {
+                            Text($0.displayTitle).tag($0)
+                        }
+                    }
+                    Picker(T("主题", "Theme"), selection: $themePref) {
+                        ForEach(ThemePreference.allCases, id: \.self) {
+                            Text($0.displayTitle).tag($0)
+                        }
+                    }
                 }
                 
-                Section(header: Text("天文观测")) {
-                    Toggle("默认开启光污染图层", isOn: $showLP)
+                Section(header: Text(T("天文观测", "Observing"))) {
+                    Toggle(T("默认开启光污染图层", "Enable light pollution layer by default"), isOn: $showLP)
                 }
             }
-            .navigationTitle("设置")
-            .navigationBarItems(trailing: Button("完成") { dismiss() })
+            .navigationTitle(T("设置", "Settings"))
+            .navigationBarItems(trailing: Button(T("完成", "Done")) { dismiss() })
         }
     }
 }
@@ -202,7 +210,7 @@ struct FullScreenMapView: View {
                     
                     Spacer()
 
-                    Text("点击地图查看污染等级")
+                    Text(T("点击地图查看污染等级", "Tap the map to inspect light pollution"))
                         .font(.caption.weight(.semibold))
                         .padding(.horizontal, 12)
                         .padding(.vertical, 9)
@@ -220,7 +228,7 @@ struct FullScreenMapView: View {
                             VStack(spacing: 4) {
                                 Image(systemName: "globe.asia.australia.fill")
                                     .font(.system(size: 18))
-                                Text("全国")
+                                Text(T("全国", "China"))
                                     .font(.system(size: 9, weight: .semibold))
                             }
                             .foregroundColor(.white)

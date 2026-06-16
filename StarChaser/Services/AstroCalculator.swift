@@ -50,11 +50,7 @@ class MoonResult {
         // 生成连续的动画时间轴
         self.phaseProgress = isWaxing ? (frac * 0.5) : (0.5 + (1.0 - frac) * 0.5)
         
-        if frac < 0.05 { self.phaseName = "新月" }
-        else if frac < 0.45 { self.phaseName = isWaxing ? "峨眉月" : "残月" }
-        else if frac < 0.55 { self.phaseName = isWaxing ? "上弦月" : "下弦月" }
-        else if frac < 0.95 { self.phaseName = isWaxing ? "盈凸月" : "亏凸月" }
-        else { self.phaseName = "满月" }
+        self.phaseName = MoonResult.phaseName(for: frac, isWaxing: isWaxing)
         
         self.daysToFullMoon = isWaxing ? Int((1.0 - frac) * 14.76) : Int(frac * 14.76 + 14.76)
         
@@ -67,16 +63,19 @@ class MoonResult {
             let fIsWaxing = fNext.illuminatedFraction() > fFrac
             let fProgress = fIsWaxing ? (fFrac * 0.5) : (0.5 + (1.0 - fFrac) * 0.5)
             
-            var fName = "新月"
-            if fFrac < 0.05 { fName = "新月" }
-            else if fFrac < 0.45 { fName = fIsWaxing ? "峨眉月" : "残月" }
-            else if fFrac < 0.55 { fName = fIsWaxing ? "上弦月" : "下弦月" }
-            else if fFrac < 0.95 { fName = fIsWaxing ? "盈凸月" : "亏凸月" }
-            else { fName = "满月" }
+            let fName = MoonResult.phaseName(for: fFrac, isWaxing: fIsWaxing)
             
             tempForecast.append(DailyMoonPhase(dayOffset: i, date: futureDate, phaseName: fName, phaseProgress: fProgress, illumination: fFrac))
         }
         self.forecast = tempForecast
+    }
+
+    static func phaseName(for fraction: Double, isWaxing: Bool) -> String {
+        if fraction < 0.05 { return T("新月", "New Moon") }
+        if fraction < 0.45 { return isWaxing ? T("峨眉月", "Waxing Crescent") : T("残月", "Waning Crescent") }
+        if fraction < 0.55 { return isWaxing ? T("上弦月", "First Quarter") : T("下弦月", "Last Quarter") }
+        if fraction < 0.95 { return isWaxing ? T("盈凸月", "Waxing Gibbous") : T("亏凸月", "Waning Gibbous") }
+        return T("满月", "Full Moon")
     }
 }
 
