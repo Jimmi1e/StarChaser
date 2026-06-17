@@ -1,3 +1,4 @@
+<img width="1179" height="2556" alt="ff4bc32ca260a9cd2d026178f67d3f33" src="https://github.com/user-attachments/assets/4c81a1e8-aa7a-475d-b7e9-5fed559859aa" />
 # StarChaser - Your Personal Stargazing Guide
 
 <p align="center">
@@ -48,17 +49,20 @@ The sky forecast feature does **not** use an AI model. It uses a transparent rul
 * **Exposure relationship tools**: Aperture, ISO, shutter speed, and exposure compensation are linked, so changing one parameter updates the others.
 * **Digital and film support**: Provides guidance for mirrorless/DSLR cameras and film stocks, including reciprocity failure considerations.
 
----
+---<img width="1179" height="2556" alt="7bfea7ade4437d950e0389c210f797d9"  />
 
-## Screenshots
+
+
 
 <div align="center">
-<img width="300" alt="05bfe41bb3654c6f4c1f9d2bbe77cc06" src="https://github.com/user-attachments/assets/26fcb273-a80a-45d4-87d5-cd4bd71ce257" />
-<img width="300" alt="968f6444acac1e61d1ecf3347ee7a9b3" src="https://github.com/user-attachments/assets/46cab1c9-1b88-439e-8ab3-ed1aa5d9b20e" />
-<img width="300" alt="8706ca76d902f08192320b62d2676f43" src="https://github.com/user-attachments/assets/758eee26-37cb-40d2-bad7-93d94bb0145b" />
-<img width="300" alt="4d8362161b1f47cb27656f3d169bb433" src="https://github.com/user-attachments/assets/6dd366e0-f0b5-401c-8f6f-b5506f39f430" />
-<img width="300" alt="6248578712ced7ea627d6bc2843647bf" src="https://github.com/user-attachments/assets/e4e591d2-6c07-4de4-a701-64c61de90105" />
-<img width="300" alt="258f6836f2131b6f8c2516c5190d4282" src="https://github.com/user-attachments/assets/0e0ad691-22da-48d5-8ca1-baec9c07bc90" />
+<img width="300" alt="05bfe41bb3654c6f4c1f9d2bbe77cc06" src="https://github.com/user-attachments/assets/d7ef0351-65dc-4afa-9353-0de51457097e" />
+<img width="300" alt="968f6444acac1e61d1ecf3347ee7a9b3" src="https://github.com/user-attachments/assets/9ba0e8c9-66c1-4b04-ab69-d894d899e103" />
+<img width="300" alt="8706ca76d902f08192320b62d2676f43" src="https://github.com/user-attachments/assets/3e5614ea-a4c0-4e7e-842e-ccaf24a5f525" />
+<img width="300" alt="4d8362161b1f47cb27656f3d169bb433" src="https://github.com/user-attachments/assets/9544bd9c-8254-4228-8791-5aa65abd3544" />
+<img width="300" alt="6248578712ced7ea627d6bc2843647bf" src="https://github.com/user-attachments/assets/f1125ee0-6bbe-4458-9f4d-49d3a29b45b0" />
+<img width="300" alt="258f6836f2131b6f8c2516c5190d4282" src="https://github.com/user-attachments/assets/31f40d62-e6bd-4b11-97c6-57e6c19387e0" /><img width="1179" height="2556" alt="76c414b58efae8355bed9444557076f4" src="https://github.com/user-attachments/assets/19fca71f-2640-465d-8a30-3a5b52ef283d" />
+
+<img width="300" alt="258f6836f2131b6f8c2516c5190d4282" src="https://github.com/user-attachments/assets/392ecb73-ad1b-487c-8f8b-bde42126a828" />
 </div>
 
 ---
@@ -182,13 +186,16 @@ This project is source-available for non-commercial use under the [PolyForm Nonc
 
 ## 功能预览
 
+
+
 <div align="center">
-<img width="300" alt="05bfe41bb3654c6f4c1f9d2bbe77cc06" src="https://github.com/user-attachments/assets/26fcb273-a80a-45d4-87d5-cd4bd71ce257" />
-<img width="300" alt="968f6444acac1e61d1ecf3347ee7a9b3" src="https://github.com/user-attachments/assets/46cab1c9-1b88-439e-8ab3-ed1aa5d9b20e" />
-<img width="300" alt="8706ca76d902f08192320b62d2676f43" src="https://github.com/user-attachments/assets/758eee26-37cb-40d2-bad7-93d94bb0145b" />
-<img width="300" alt="4d8362161b1f47cb27656f3d169bb433" src="https://github.com/user-attachments/assets/6dd366e0-f0b5-401c-8f6f-b5506f39f430" />
-<img width="300" alt="6248578712ced7ea627d6bc2843647bf" src="https://github.com/user-attachments/assets/e4e591d2-6c07-4de4-a701-64c61de90105" />
-<img width="300" alt="258f6836f2131b6f8c2516c5190d4282" src="https://github.com/user-attachments/assets/0e0ad691-22da-48d5-8ca1-baec9c07bc90" />
+<img width="300" alt="05bfe41bb3654c6f4c1f9d2bbe77cc06" src="https://github.com/user-attachments/assets/4c269bc6-e588-4395-bf90-47dfd6384156" />
+<img width="300" alt="968f6444acac1e61d1ecf3347ee7a9b3" src="https://github.com/user-attachments/assets/4d2a42be-ee3f-4167-b8eb-89e8246a54b2" />
+<img width="300" alt="8706ca76d902f08192320b62d2676f43" src="https://github.com/user-attachments/assets/5be55ce8-f34d-4b28-8d24-15ab01d07ee9" />
+<img width="300" alt="4d8362161b1f47cb27656f3d169bb433" src="https://github.com/user-attachments/assets/7d063bd5-1006-4de8-87d2-4dcb2c853280" />
+<img width="300" alt="6248578712ced7ea627d6bc2843647bf" src="https://github.com/user-attachments/assets/d4ebf84e-f006-456c-926d-a09d369c2e97" />
+<img width="300" alt="258f6836f2131b6f8c2516c5190d4282" src="https://github.com/user-attachments/assets/919c039f-c249-43d0-8ec2-1ec52d93ed80" />
+<img width="300" alt="c19b673ec99d35979d578d9ae4c29a68" src="https://github.com/user-attachments/assets/cabd3c71-961c-4482-8d74-ad4b5707a2ac" />
 </div>
 
 ---
