@@ -50,12 +50,16 @@ The sky forecast feature does **not** use an AI model. It uses a transparent rul
 
 ---
 
+
+
+
+
 <div align="center">
 <img width="300" alt="05bfe41bb3654c6f4c1f9d2bbe77cc06" src="https://github.com/user-attachments/assets/d7ef0351-65dc-4afa-9353-0de51457097e" />
-<img width="300" alt="968f6444acac1e61d1ecf3347ee7a9b3" src="https://github.com/user-attachments/assets/9ba0e8c9-66c1-4b04-ab69-d894d899e103" />
+<img width="300" alt="47a6fcb22ee2ce644e2a359eb8e15c5d" src="https://github.com/user-attachments/assets/37e274ee-e3c1-4e48-8be5-c7b763d6f184" />
 <img width="300" alt="8706ca76d902f08192320b62d2676f43" src="https://github.com/user-attachments/assets/3e5614ea-a4c0-4e7e-842e-ccaf24a5f525" />
 <img width="300" alt="4d8362161b1f47cb27656f3d169bb433" src="https://github.com/user-attachments/assets/9544bd9c-8254-4228-8791-5aa65abd3544" />
-<img width="300" alt="6248578712ced7ea627d6bc2843647bf" src="https://github.com/user-attachments/assets/f1125ee0-6bbe-4458-9f4d-49d3a29b45b0" />
+<img width="300" alt="3ff8a5688ab56414e406d8c73502104b" src="https://github.com/user-attachments/assets/20b6a9a5-b039-4bd7-9eb7-12c7d8872c25" />
 <img width="300" alt="258f6836f2131b6f8c2516c5190d4282" src="https://github.com/user-attachments/assets/31f40d62-e6bd-4b11-97c6-57e6c19387e0" />
 <img width="300" alt="2f38be6cc71fd53a7fd3019546e69ca7" src="https://github.com/user-attachments/assets/875b94c6-f74a-4e47-a331-29fba40824ca" />
 <img width="300" alt="258f6836f2131b6f8c2516c5190d4282" src="https://github.com/user-attachments/assets/392ecb73-ad1b-487c-8f8b-bde42126a828" />
