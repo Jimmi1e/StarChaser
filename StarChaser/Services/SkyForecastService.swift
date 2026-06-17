@@ -44,9 +44,18 @@ struct SkyForecastRecommendation: Identifiable, Sendable {
     let distanceMeters: Double
     let bortleClass: BortleClass
     let overallScore: Int
-    let confidenceLabel: String
-    let shortReason: String
     let days: [SkyForecastDay]
+
+    var confidenceLabel: String {
+        T("5 天预报", "5-day forecast")
+    }
+
+    var shortReason: String {
+        SkyForecastText.shortReason(
+            bortle: bortleClass,
+            bestDay: bestDay
+        )
+    }
 
     var distanceText: String {
         if distanceMeters >= 10_000 {
@@ -65,8 +74,6 @@ struct SkyForecastDay: Identifiable, Sendable {
     let id: String
     let date: Date
     let score: Int
-    let weatherLabel: String
-    let recommendationLabel: String
     let cloudCover: Int
     let humidity: Int
     let visibilityKilometers: Double
@@ -74,6 +81,117 @@ struct SkyForecastDay: Identifiable, Sendable {
     let precipitationProbability: Int
     let moonIllumination: Int
     let moonPenalty: Int
+
+    var weatherLabel: String {
+        SkyForecastText.weatherSummary(
+            cloud: cloudCover,
+            humidity: humidity,
+            visibilityKilometers: visibilityKilometers,
+            moonIllumination: moonIllumination
+        )
+    }
+
+    var recommendationLabel: String {
+        SkyForecastText.nightlyLabel(score: score)
+    }
+}
+
+private enum SkyForecastText {
+    nonisolated static func nightlyLabel(score: Int) -> String {
+        switch score {
+        case 82...:
+            return T("强烈推荐", "Highly Recommended")
+        case 68...81:
+            return T("推荐观测", "Recommended")
+        case 52...67:
+            return T("条件一般", "Moderate")
+        default:
+            return T("今晚不建议", "Not Recommended")
+        }
+    }
+
+    nonisolated static func weatherSummary(
+        cloud: Int,
+        humidity: Int,
+        visibilityKilometers: Double,
+        moonIllumination: Int
+    ) -> String {
+        TF(
+            "云量 %d%% · 湿度 %d%% · 能见度 %.0f km · 月相 %d%%",
+            "Cloud %d%% · Humidity %d%% · Visibility %.0f km · Moon %d%%",
+            cloud,
+            humidity,
+            visibilityKilometers,
+            moonIllumination
+        )
+    }
+
+    nonisolated static func shortReason(
+        bortle: BortleClass,
+        bestDay: SkyForecastDay?
+    ) -> String {
+        guard let bestDay else {
+            return bortle.title
+        }
+
+        return TF(
+            "%@，%@。%@",
+            "%@ with %@. %@",
+            bortle.title,
+            bestDay.weatherLabel,
+            forecastAdvice(for: bortle)
+        )
+    }
+
+    nonisolated private static func forecastAdvice(for bortle: BortleClass) -> String {
+        switch bortle {
+        case .class1:
+            return T(
+                "极适合银河、星野和深空目标，可优先安排长时间拍摄。",
+                "Excellent for the Milky Way, wide-field stars, and deep-sky targets; prioritize longer sessions."
+            )
+        case .class2:
+            return T(
+                "非常适合银河和星野，夏季银河核心细节通常会很丰富。",
+                "Very good for Milky Way and wide-field work; the summer core should show strong structure."
+            )
+        case .class3:
+            return T(
+                "适合银河主体和星野，建议避开低空城市光穹方向。",
+                "Good for the main Milky Way band and wide-field shots; avoid low urban skyglow."
+            )
+        case .class4:
+            return T(
+                "可拍银河和星野，但细节会下降，建议选择无月夜并增加堆栈。",
+                "Usable for Milky Way and wide-field shots, but detail drops; choose moonless nights and stack more frames."
+            )
+        case .class5:
+            return T(
+                "光害明显，银河只适合通透无月夜尝试；更适合星座、星轨和亮目标。",
+                "Noticeable light pollution; try the Milky Way only on transparent moonless nights. Constellations, star trails, and bright targets are safer."
+            )
+        case .class6:
+            return T(
+                "不建议作为银河主拍地点，适合月亮、行星、亮星团或城市星轨。",
+                "Not recommended as a primary Milky Way location; better for the Moon, planets, bright clusters, or urban star trails."
+            )
+        case .class7:
+            return T(
+                "银河通常很难呈现，推荐值主要代表天气可用；建议转向月亮、行星和亮目标。",
+                "The Milky Way is usually hard to render; the score mostly means the weather is usable. Favor the Moon, planets, and bright targets."
+            )
+        case .class8:
+            return T(
+                "城市天光很强，不推荐银河或普通星野；可考虑月亮、行星和城市夜景星轨。",
+                "Urban skyglow is strong; avoid Milky Way and general wide-field work. Consider the Moon, planets, or city star trails."
+            )
+        case .class9:
+            return T(
+                "市中心级光害，不适合银河和星野观测，推荐仅作为亮目标拍摄参考。",
+                "City-center light pollution; not suitable for Milky Way or wide-field observing, useful mainly for bright-target planning."
+            )
+        }
+    }
 }
 
 enum SkyForecastServiceError: LocalizedError {
@@ -423,12 +541,6 @@ enum SkyForecastService {
         }
         let scoreCount = max(dailyForecasts.count, 1)
         let overallScore = Int(round(Double(scoreTotal) / Double(scoreCount)))
-        let confidenceLabel = T("5 天预报", "5-day forecast")
-        let shortReason = buildShortReason(
-            bortle: lightPollution.bortleClass,
-            bestDay: dailyForecasts.max(by: { $0.score < $1.score })
-        )
-
         return SkyForecastRecommendation(
             id: poi.id,
             name: poi.name,
@@ -437,8 +549,6 @@ enum SkyForecastService {
             distanceMeters: poi.distanceMeters,
             bortleClass: lightPollution.bortleClass,
             overallScore: overallScore,
-            confidenceLabel: confidenceLabel,
-            shortReason: shortReason,
             days: dailyForecasts
         )
     }
@@ -484,20 +594,11 @@ enum SkyForecastService {
             + Double(rainScore) * 0.00
 
         let finalScore = max(1, min(99, Int(weightedScore.rounded())))
-        let label = nightlyLabel(score: finalScore)
-        let weatherLabel = weatherSummary(
-            cloud: cloud,
-            humidity: humidity,
-            visibilityMeters: visibilityMeters,
-            moonIllumination: moonIllumination
-        )
 
         return SkyForecastDay(
             id: ISO8601DateFormatter().string(from: date),
             date: date,
             score: finalScore,
-            weatherLabel: weatherLabel,
-            recommendationLabel: label,
             cloudCover: cloud,
             humidity: humidity,
             visibilityKilometers: visibilityMeters / 1_000,
@@ -630,102 +731,6 @@ enum SkyForecastService {
     private static func moonPenalty(illumination: Int, altitude: Double) -> Int {
         let altitudeFactor = altitude > 5 ? 1.0 : 0.45
         return Int(Double(illumination) * altitudeFactor)
-    }
-
-    private static func nightlyLabel(score: Int) -> String {
-        switch score {
-        case 82...:
-            return T("强烈推荐", "Highly Recommended")
-        case 68...81:
-            return T("推荐观测", "Recommended")
-        case 52...67:
-            return T("条件一般", "Moderate")
-        default:
-            return T("今晚不建议", "Not Recommended")
-        }
-    }
-
-    private static func weatherSummary(
-        cloud: Int,
-        humidity: Int,
-        visibilityMeters: Double,
-        moonIllumination: Int
-    ) -> String {
-        TF(
-            "云量 %d%% · 湿度 %d%% · 能见度 %.0f km · 月相 %d%%",
-            "Cloud %d%% · Humidity %d%% · Visibility %.0f km · Moon %d%%",
-            cloud,
-            humidity,
-            visibilityMeters / 1_000,
-            moonIllumination
-        )
-    }
-
-    private static func buildShortReason(
-        bortle: BortleClass,
-        bestDay: SkyForecastDay?
-    ) -> String {
-        guard let bestDay else {
-            return bortle.title
-        }
-
-        return TF(
-            "%@，%@。%@",
-            "%@ with %@. %@",
-            bortle.title,
-            bestDay.weatherLabel,
-            forecastAdvice(for: bortle)
-        )
-    }
-
-    private static func forecastAdvice(for bortle: BortleClass) -> String {
-        switch bortle {
-        case .class1:
-            return T(
-                "极适合银河、星野和深空目标，可优先安排长时间拍摄。",
-                "Excellent for the Milky Way, wide-field stars, and deep-sky targets; prioritize longer sessions."
-            )
-        case .class2:
-            return T(
-                "非常适合银河和星野，夏季银河核心细节通常会很丰富。",
-                "Very good for Milky Way and wide-field work; the summer core should show strong structure."
-            )
-        case .class3:
-            return T(
-                "适合银河主体和星野，建议避开低空城市光穹方向。",
-                "Good for the main Milky Way band and wide-field shots; avoid low urban skyglow."
-            )
-        case .class4:
-            return T(
-                "可拍银河和星野，但细节会下降，建议选择无月夜并增加堆栈。",
-                "Usable for Milky Way and wide-field shots, but detail drops; choose moonless nights and stack more frames."
-            )
-        case .class5:
-            return T(
-                "光害明显，银河只适合通透无月夜尝试；更适合星座、星轨和亮目标。",
-                "Noticeable light pollution; try the Milky Way only on transparent moonless nights. Constellations, star trails, and bright targets are safer."
-            )
-        case .class6:
-            return T(
-                "不建议作为银河主拍地点，适合月亮、行星、亮星团或城市星轨。",
-                "Not recommended as a primary Milky Way location; better for the Moon, planets, bright clusters, or urban star trails."
-            )
-        case .class7:
-            return T(
-                "银河通常很难呈现，推荐值主要代表天气可用；建议转向月亮、行星和亮目标。",
-                "The Milky Way is usually hard to render; the score mostly means the weather is usable. Favor the Moon, planets, and bright targets."
-            )
-        case .class8:
-            return T(
-                "城市天光很强，不推荐银河或普通星野；可考虑月亮、行星和城市夜景星轨。",
-                "Urban skyglow is strong; avoid Milky Way and general wide-field work. Consider the Moon, planets, or city star trails."
-            )
-        case .class9:
-            return T(
-                "市中心级光害，不适合银河和星野观测，推荐仅作为亮目标拍摄参考。",
-                "City-center light pollution; not suitable for Milky Way or wide-field observing, useful mainly for bright-target planning."
-            )
-        }
     }
 
     private static func cacheKey(
