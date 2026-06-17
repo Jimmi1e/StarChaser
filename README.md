@@ -57,6 +57,7 @@ The sky forecast feature does **not** use an AI model. It uses a transparent rul
 <img width="300" alt="4d8362161b1f47cb27656f3d169bb433" src="https://github.com/user-attachments/assets/9544bd9c-8254-4228-8791-5aa65abd3544" />
 <img width="300" alt="6248578712ced7ea627d6bc2843647bf" src="https://github.com/user-attachments/assets/f1125ee0-6bbe-4458-9f4d-49d3a29b45b0" />
 <img width="300" alt="258f6836f2131b6f8c2516c5190d4282" src="https://github.com/user-attachments/assets/31f40d62-e6bd-4b11-97c6-57e6c19387e0" />
+<img width="300" alt="2f38be6cc71fd53a7fd3019546e69ca7" src="https://github.com/user-attachments/assets/875b94c6-f74a-4e47-a331-29fba40824ca" />
 <img width="300" alt="258f6836f2131b6f8c2516c5190d4282" src="https://github.com/user-attachments/assets/392ecb73-ad1b-487c-8f8b-bde42126a828" />
 </div>
 
@@ -188,6 +189,8 @@ This project is source-available for non-commercial use under the [PolyForm Nonc
 <img width="300" alt="968f6444acac1e61d1ecf3347ee7a9b3" src="https://github.com/user-attachments/assets/4d2a42be-ee3f-4167-b8eb-89e8246a54b2" />
 <img width="300" alt="8706ca76d902f08192320b62d2676f43" src="https://github.com/user-attachments/assets/5be55ce8-f34d-4b28-8d24-15ab01d07ee9" />
 <img width="300" alt="4d8362161b1f47cb27656f3d169bb433" src="https://github.com/user-attachments/assets/7d063bd5-1006-4de8-87d2-4dcb2c853280" />
+<img width="300" alt="fb0b6705cb147c2341fa2a089aa6923c" src="https://github.com/user-attachments/assets/76124cc9-7cc4-4a94-ac9e-d3698ae060c5" />
+<img width="300" alt="0ccce4414aa9af8f74e29823dd8487cd" src="https://github.com/user-attachments/assets/8dbaaef7-222c-4ce9-8d17-04cce4ffa7af" />
 <img width="300" alt="6248578712ced7ea627d6bc2843647bf" src="https://github.com/user-attachments/assets/d4ebf84e-f006-456c-926d-a09d369c2e97" />
 <img width="300" alt="258f6836f2131b6f8c2516c5190d4282" src="https://github.com/user-attachments/assets/919c039f-c249-43d0-8ec2-1ec52d93ed80" />
 <img width="300" alt="c19b673ec99d35979d578d9ae4c29a68" src="https://github.com/user-attachments/assets/cabd3c71-961c-4482-8d74-ad4b5707a2ac" />
