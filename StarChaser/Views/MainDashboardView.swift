@@ -20,6 +20,7 @@ struct MainDashboardView: View {
     @State private var isShowingFullScreenMap = false
     @State private var isShowingCameraMeter = false
     @State private var isShowingSettings = false
+    @State private var isShowingSkyForecast = false
     
     var body: some View {
         ZStack {
@@ -100,6 +101,13 @@ struct MainDashboardView: View {
                     }
 
                     Button {
+                        isShowingSkyForecast = true
+                    } label: {
+                        SkyForecastWidgetView(coordinate: locationManager.location)
+                    }
+                    .buttonStyle(.plain)
+
+                    Button {
                         isShowingCameraMeter = true
                     } label: {
                         CameraMeterWidgetView()
@@ -120,6 +128,9 @@ struct MainDashboardView: View {
         }
         .sheet(isPresented: $isShowingDetail) { if let data = moonData { MoonDetailView(initialData: data, location: locationManager) } }
         .sheet(isPresented: $isShowingSettings) { QuickSettingsView() }
+        .fullScreenCover(isPresented: $isShowingSkyForecast) {
+            SkyForecastDetailView(coordinate: locationManager.location)
+        }
         .fullScreenCover(isPresented: $isShowingCameraMeter) {
             NavigationStack {
                 CameraMeterView()

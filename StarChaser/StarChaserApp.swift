@@ -17,7 +17,7 @@ struct StarChaserApp: App {
             SplashView()
                 .preferredColorScheme(themePref.colorScheme)
                 .environment(\.locale, languagePref.locale)
-                .id(languagePref.rawValue)
+                .id(languagePref.appLanguageIdentity)
         }
     }
 }

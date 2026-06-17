@@ -1,44 +1,56 @@
-# StarChaser - 您的私人星空观测指南 🌌
+# StarChaser - Your Personal Stargazing Guide
+
+<p align="center">
+  <a href="#english">English</a> · <a href="#chinese">中文</a>
+</p>
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/9f4ca86d-ce6d-40cb-80a2-cd0b1ffd06cd" width="200" alt="StarChaser Icon">
 </p>
 
+<a id="english"></a>
 
 <p align="center">
-  <b>探索暗夜，追随银河。StarChaser 是一款专为星空摄影师和天文爱好者打造的专业级 iOS 应用。</b>
+  <b>Explore darker skies and plan better nights under the Milky Way. StarChaser is a professional iOS companion for astrophotographers and astronomy enthusiasts.</b>
 </p>
 
 ---
 
-## 🌟 应用简介
+## Overview
 
-**StarChaser** 致力于通过数据可视化与人工智能技术，帮助摄影师在复杂的户外环境中找到最纯净的暗夜。无论您使用的是无反相机、单反还是胶片机，StarChaser 都能为您提供精准的曝光指导与拍摄决策。
+**StarChaser** helps photographers make practical night-sky decisions with visual maps, astronomy calculations, weather data, moon phase analysis, and camera exposure tools. It is designed for mirrorless cameras, DSLRs, film cameras, and mobile-assisted planning.
 
----
-
-## ✨ 核心功能
-
-### 🌍 全球光污染地图 (Light Pollution Map)
-* **实时探测**：直观查看全球范围内的光污染分布图层。
-* **精准触控**：轻轻一点，即可获取目标区域的 Bortle 等级（波特尔暗空等级），助您精准评估拍摄地的暗黑程度。
-
-### 🌙 月相追踪与预测 (Lunar Cycle)
-* **实时监控**：随时随地查看当前的月相状态、升落时间。
-* **智能预测**：内置全年度月相数据库，帮您提前规划拍摄日程，避开满月干扰，捕捉最完美的银河。
-
-### 📷 专业相机测光助手 (Photographic Meter)
-* **曝光建议**：利用手机相机作为测光仪，实时计算环境亮度。
-* **参数指导**：根据您的拍摄器材（无反/单反/胶片机）和镜头焦段，为您自动推荐 ISO、光圈与快门速度，让星空摄影不再是猜谜游戏。
-
-### 🚀 未来愿景：AI 智能星空向导
-我们正在全力引入智能 AI 系统，未来 StarChaser 将实现：
-* **最佳观测点推荐**：根据您的当前位置，智能筛选周边适合拍摄星空的景区与暗夜公园。
-* **全能预测引擎**：深度集成气象信息与月相数据，为您一键推送“今晚是否适合拍摄”的专业分析与建议。
+The sky forecast feature does **not** use an AI model. It uses a transparent rule-based scoring method that combines nearby scenic POIs, light pollution, weather, moonlight, and distance.
 
 ---
 
-## 📸 功能预览
+## Core Features
+
+### Light Pollution Map
+
+* **Interactive dark-sky map**: View light pollution layers and compare observing areas visually.
+* **Bortle class reading**: Tap a location to estimate its Bortle class and understand how suitable it is for Milky Way, wide-field, or bright-object observing.
+
+### Sky Forecast
+
+* **Nearby observing spot search**: Searches scenic viewpoints, scenic areas, campsites, mountain areas, forest parks, and lakes within the current 100 km planning range.
+* **Rule-based ranking**: Scores each candidate using light pollution, 5-day hourly weather, local moon phase and moon altitude, visibility, humidity, wind, and distance.
+* **Practical observing advice**: Recommendation text changes by Bortle level, so heavily polluted areas are not described as ideal Milky Way locations.
+
+### Lunar Cycle
+
+* **Moon phase tracking**: Check the current moon phase, illumination, altitude, and rise/set timing.
+* **Planning support**: Use moonlight interference and phase trends to plan darker shooting windows.
+
+### Photographic Meter
+
+* **Phone-based metering reference**: Uses the phone camera as a brightness reference for night shooting.
+* **Exposure relationship tools**: Aperture, ISO, shutter speed, and exposure compensation are linked, so changing one parameter updates the others.
+* **Digital and film support**: Provides guidance for mirrorless/DSLR cameras and film stocks, including reciprocity failure considerations.
+
+---
+
+## Screenshots
 
 <div align="center">
 <img width="300" alt="05bfe41bb3654c6f4c1f9d2bbe77cc06" src="https://github.com/user-attachments/assets/26fcb273-a80a-45d4-87d5-cd4bd71ce257" />
@@ -47,22 +59,186 @@
 <img width="300" alt="4d8362161b1f47cb27656f3d169bb433" src="https://github.com/user-attachments/assets/6dd366e0-f0b5-401c-8f6f-b5506f39f430" />
 <img width="300" alt="6248578712ced7ea627d6bc2843647bf" src="https://github.com/user-attachments/assets/e4e591d2-6c07-4de4-a701-64c61de90105" />
 <img width="300" alt="258f6836f2131b6f8c2516c5190d4282" src="https://github.com/user-attachments/assets/0e0ad691-22da-48d5-8ca1-baec9c07bc90" />
-
 </div>
 
 ---
 
-## 🚀 即将上线
+## Forecast Method
 
-StarChaser 正在进行最终的合规审查与打磨，**即将登录 Apple App Store**！
+StarChaser's observing forecast is intentionally transparent:
 
-请持续关注本项目，获取最新上线进度。期待与您一起，记录星辰大海。
+1. It uses the user's location to query nearby scenic POIs through the AMap Web Service.
+2. It estimates each candidate's light pollution and Bortle class.
+3. It requests 5-day hourly weather from Open-Meteo, including cloud cover, humidity, visibility, wind, and precipitation probability.
+4. It calculates moon phase, illumination, and moon altitude locally.
+5. It ranks candidates with weighted rules, giving the strongest weight to darkness and then considering clouds, moonlight, humidity, visibility, wind, and distance.
+
+This makes the result explainable and predictable instead of relying on a black-box AI recommendation.
 
 ---
 
-## 🛠 开发与反馈
+## Local API Key Setup
 
-如果您是星空摄影爱好者，或对本项目感兴趣，欢迎通过 GitHub Issues 提交您的建议或反馈。您的每一份支持，都是我们点亮暗夜的动力。
+The real API key file is intentionally ignored by git:
+
+```text
+StarChaser/Config/APIKeys.plist
+```
+
+To run the sky forecast module locally:
+
+1. Copy the example file:
+
+```bash
+cp StarChaser/Config/APIKeys.example.plist StarChaser/Config/APIKeys.plist
+```
+
+2. Replace the placeholder value:
+
+```xml
+<key>AMapWebServiceKey</key>
+<string>YOUR_AMAP_WEB_SERVICE_KEY</string>
+```
+
+3. Keep `StarChaser/Config/APIKeys.plist` private. Only the example file should be committed.
+
+StarChaser currently uses the AMap Web Service key for nearby POI search. The Open-Meteo weather request does not require an API key.
+
+---
+
+## App Store Plan
+
+StarChaser is being prepared for Apple App Store release. The project is still being refined for performance, bilingual copy, and production readiness.
+
+---
+
+## Feedback
+
+If you are interested in astrophotography or night-sky planning, feedback and suggestions are welcome through GitHub Issues.
+
+---
+
+<p align="center">
+  © 2026 StarChaser Team
+</p>
+
+<a id="chinese"></a>
+
+# StarChaser - 您的私人星空观测指南
+
+<p align="center">
+  <a href="#english">English</a> · <a href="#chinese">中文</a>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/9f4ca86d-ce6d-40cb-80a2-cd0b1ffd06cd" width="200" alt="StarChaser Icon">
+</p>
+
+<p align="center">
+  <b>探索暗夜，追随银河。StarChaser 是一款专为星空摄影师和天文爱好者打造的专业级 iOS 应用。</b>
+</p>
+
+---
+
+## 应用简介
+
+**StarChaser** 通过地图可视化、天文计算、天气数据、月相分析和相机曝光工具，帮助摄影师更好地规划星空拍摄。无论您使用的是无反相机、单反、胶片机，还是希望用手机辅助测光，StarChaser 都能提供更清晰的拍摄决策参考。
+
+观星预测功能**不使用 AI 模型**。它采用透明的规则评分方法，综合周边景点候选地、光污染、天气、月光干扰和距离来生成推荐。
+
+---
+
+## 核心功能
+
+### 光污染地图
+
+* **交互式暗夜地图**：直观查看光污染图层，对比不同区域的暗空条件。
+* **Bortle 等级读取**：点击地图位置即可估算 Bortle 波特尔暗空等级，判断该地点更适合银河、星野还是亮目标观测。
+
+### 观星预测
+
+* **附近观测点搜索**：在当前固定 100 km 规划范围内，搜索观景台、景区、露营地、山地、森林公园和湖泊等候选地点。
+* **规则化评分**：结合光污染、5 天天气预报、本地月相与月亮高度、能见度、湿度、风速和距离进行排序。
+* **实用观测建议**：推荐文字会根据 Bortle 等级变化，光污染严重的区域不会被写成适合银河主拍地点。
+
+### 月相追踪
+
+* **月相状态**：查看当前月相、照明比例、月亮高度和升落时间。
+* **拍摄规划**：结合月光干扰和月相变化，提前选择更暗的拍摄窗口。
+
+### 专业相机测光助手
+
+* **手机测光参考**：使用手机相机读取环境亮度，为夜间拍摄提供参考。
+* **曝光参数联动**：光圈、ISO、快门和曝光补偿会相互制约，调整其中一项时自动换算其他参数。
+* **数码与胶片支持**：支持无反/单反相机和胶片模式，并考虑胶片倒易律失效带来的曝光修正。
+
+---
+
+## 功能预览
+
+<div align="center">
+<img width="300" alt="05bfe41bb3654c6f4c1f9d2bbe77cc06" src="https://github.com/user-attachments/assets/26fcb273-a80a-45d4-87d5-cd4bd71ce257" />
+<img width="300" alt="968f6444acac1e61d1ecf3347ee7a9b3" src="https://github.com/user-attachments/assets/46cab1c9-1b88-439e-8ab3-ed1aa5d9b20e" />
+<img width="300" alt="8706ca76d902f08192320b62d2676f43" src="https://github.com/user-attachments/assets/758eee26-37cb-40d2-bad7-93d94bb0145b" />
+<img width="300" alt="4d8362161b1f47cb27656f3d169bb433" src="https://github.com/user-attachments/assets/6dd366e0-f0b5-401c-8f6f-b5506f39f430" />
+<img width="300" alt="6248578712ced7ea627d6bc2843647bf" src="https://github.com/user-attachments/assets/e4e591d2-6c07-4de4-a701-64c61de90105" />
+<img width="300" alt="258f6836f2131b6f8c2516c5190d4282" src="https://github.com/user-attachments/assets/0e0ad691-22da-48d5-8ca1-baec9c07bc90" />
+</div>
+
+---
+
+## 预测方法
+
+StarChaser 的观星预测是可解释的规则评分：
+
+1. 根据用户位置，通过高德 Web 服务查询附近景区类 POI。
+2. 估算每个候选地点的光污染和 Bortle 等级。
+3. 请求 Open-Meteo 的 5 天小时级天气数据，包括云量、湿度、能见度、风速和降水概率。
+4. 在本地计算月相、月亮照明比例和月亮高度。
+5. 使用加权规则给候选地点排序，其中暗空条件权重最高，其次考虑云量、月光、湿度、能见度、风速和距离。
+
+因此结果更容易解释和复查，而不是依赖黑盒式 AI 推荐。
+
+---
+
+## 本地 API Key 配置
+
+真实 API key 文件已经被 git 忽略：
+
+```text
+StarChaser/Config/APIKeys.plist
+```
+
+如果要在本地运行观星预测模块：
+
+1. 复制示例文件：
+
+```bash
+cp StarChaser/Config/APIKeys.example.plist StarChaser/Config/APIKeys.plist
+```
+
+2. 替换里面的占位值：
+
+```xml
+<key>AMapWebServiceKey</key>
+<string>YOUR_AMAP_WEB_SERVICE_KEY</string>
+```
+
+3. 请保持 `StarChaser/Config/APIKeys.plist` 只存在于本地，不要提交真实 key。仓库里只提交示例文件即可。
+
+StarChaser 目前使用高德 Web 服务 Key 获取周边 POI。Open-Meteo 天气请求不需要 API key。
+
+---
+
+## App Store 计划
+
+StarChaser 正在为 Apple App Store 上架做准备，目前重点打磨性能、双语文案和正式版本体验。
+
+---
+
+## 开发与反馈
+
+如果您是星空摄影爱好者，或对本项目感兴趣，欢迎通过 GitHub Issues 提交建议或反馈。
 
 ---
 

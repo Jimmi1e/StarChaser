@@ -81,6 +81,10 @@ enum LanguagePreference: String, CaseIterable {
         Locale(identifier: localeIdentifier)
     }
 
+    nonisolated var appLanguageIdentity: String {
+        prefersChinese ? "zh" : "en"
+    }
+
     nonisolated var mapField: String {
         prefersChinese ? "{name:zh}" : "{name:en}"
     }
